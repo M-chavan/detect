@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Capture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+    <!-- Core CSS - Include with every page -->
+    <link href="static/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="static/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="static/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="static/assets/css/style.css" rel="stylesheet" />
+    <link href="static/assets/css/main-style.css" rel="stylesheet" />
+    <!-- Page-Level CSS -->
+    <link href="static/assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+
+    <style type="text/css">
+        body{
+            font-family: Poppins-Regular, sans-serif;
+            background-color: #f8f9fa;
+        }
+        #page-wrapper {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 50px auto;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .btn i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="static/images/techlogo.png" alt="" />
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-3x"></i>
+                    </a>
+                    <!-- dropdown user-->
+                    <ul class="dropdown-menu dropdown-user">
+                        <li class="divider"></li>
+                        <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i>Logout</a></li>
+                    </ul>
+                    <!-- end dropdown-user -->
+                </li>
+                <!-- end main dropdown -->
+            </ul>
+            <!-- end navbar-top-links -->
+        </nav>
+        <!-- end navbar top -->
+
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <div class="user-section">
+                            <div class="user-section-inner">
+                                <img src="static/assets/img/user.jpg" alt="">
+                            </div>
+                            <div class="user-info">
+                                <div><strong>Welcome </br><?php echo isset($fullName) ? $fullName : 'Online'; ?></strong></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="selected">
+                        <a href="/header"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                    </li>
+                    <li><br>
+                        
+                            <li><a href="/capture">Capture image</a></li> <br>
+                            <li><a href="/inverted">View Data</a></li>
+                        
+                    </li>
+                    
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->  
+
+        <!-- Content section -->
+        <div id="page-wrapper" style="margin-left: 250px; padding-top: 60px;">
+            <div style="text-align: center;">
+                <h1>Image Capture Application</h1>
+                <form action="/front_image" method="post">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-camera"></i> Capture Front Image
+                    </button>
+                </form>
+                <form action="/back_image" method="post">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-camera-retro"></i> Capture Back Image
+                    </button>
+                </form>
+                    <i class="fa fa-video-camera"></i> Go to Video Feed
+                </a>
+            </div>
+        </div>
+        <!-- End content section -->
+    </div>
+    <!-- end wrapper -->
+</body>
+</html>

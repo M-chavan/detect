@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Master</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .panel-heading {
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 15px;
+        }
+        .page-header {
+            margin: 0;
+            padding: 10px 15px;
+            font-size: 24px;
+        }
+        .form-control {
+            margin-bottom: 10px;
+        }
+        .btn-success {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="page-wrapper">
+        <div class="row">
+            <!-- Page Header -->
+            <div class="col-lg-12">
+                <h1 class="page-header">User Master</h1>
+            </div>
+            <!-- End Page Header -->
+        </div>
+        
+        <div class="row">
+            <!-- Form Section -->
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Add User
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form role="form" action="/add_user" id="form" name="form" method="post" accept-charset="utf-8">
+
+                                    <div class="form-group has-success col-md-6">
+                                        <label>State</label>
+                                        <select id="state" name="state" class="form-control">
+                                            <!-- Example options -->
+                                            <option value="Maharashtra">Maharashtra</option>
+                                            <option value="Assam">Assam</option>
+                                            <option value="Punjab">Punjab</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group has-success col-md-6">
+                                        <label>usertype</label>
+                                        <select id="usertype" name="usertype" class="form-control">
+                                            <!-- Example options -->
+                                            <option value="superadmin">Superadmin</option>
+                                            <option value="branch">Branch</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-lg-6 has-success">
+                                        <label>Name</label>
+                                        <input id="name" name="name" required type="text" class="form-control">
+                                    </div>
+
+                                    
+
+                                    <div class="form-group col-lg-6 has-success">
+                                        <label>Email</label><small>(Use as User ID for login)</small>
+                                        <input id="email" required name="email" type="email" class="form-control">
+                                    </div>
+
+                                    <div class="form-group col-lg-6 has-success">
+                                        <label>Mobile No</label><small>(Use as Password)</small>
+                                        <input id="mobileno" required name="mobileno" type="text" class="form-control">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-outline btn-success btn-block">Save</button>
+
+                                    <li><a href="/">Back</a></li><br>
+                                    <input type='hidden' id='operation' name='operation' value="Save">
+                                    <input type='hidden' id='id' name='id' value="">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User List Section -->
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="col-lg-3">
+                            <font>User List</font>
+                        </div>  
+                        <div class="col-lg-5 has-success" style="width: 200px;">
+                            <input type="text" name="class" id="search" class="form-control" placeholder="Search Here">
+                        </div>
+                        <div class="col-lg-4 input-group has-success" style="width: 200px;">
+                            <span class="input-group-addon">Count</span>
+                            <input type="text" name="count" id="count" class="form-control" value="" readonly>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table" id="tableId">
+                                <thead>
+                                    <tr>
+                                        <th>sr.no</th>
+                                        <th>state</th>
+                                        <th>usertype</th>
+                                        <th>name</th>
+                                        <th>email</th>
+                                        <th>mobileno</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users %}
+                                    <tr>
+                                        <td class="mailbox-name">{{ loop.index }}</td>
+                                        <td class="mailbox-name">{{ user.state }}</td>
+                                        <td class="mailbox-name">{{ user. usertype }}</td>
+                                        <td class="mailbox-name">{{ user.name }}</td>
+                                        <td class="mailbox-name">{{ user.email }}</td>
+                                        <td class="mailbox-name">{{ user.mobileno }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-danger btn-circle" id="{{ user.id }}" data-toggle="tooltip" title="Delete" onclick="deletecat(this.id)"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+   
+</body>
+</html>
